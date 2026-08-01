@@ -1,0 +1,41 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.voltageapi.com/webhooks
+type: Webhooks
+transport: https-post
+envelope:
+  shape: '{ "type": "send" | "receive" | "test", "detail": { "event": "...", "data": { ... } } }'
+  notes: >-
+    `type` is the category; `detail.event` is the specific event; `detail.data.status`
+    is the current payment status (distinct from the event that fired the webhook).
+subscription:
+  create: POST /v1/organizations/{organization_id}/environments/{environment_id}/webhooks
+  events_field: >-
+    array of objects, each with exactly one of send|receive|test whose value is the
+    corresponding enum.
+  statuses: [active, stopped, deleted]
+delivery:
+  retries: >-
+    Automatic retries via a durable delay queue honoring scheduled backoff and
+    Retry-After timing (v6.4.0); no new attempt after a delivery has succeeded or been
+    abandoned.
+event_categories:
+- category: send
+  enum: SendEventTypes
+  events:
+  - {event: succeeded, meaning: payment fully sent and recorded}
+  - {event: failed, meaning: payment failed (exhausted routes, insufficient funds, or similar)}
+- category: receive
+  enum: ReceiveEventTypes
+  events:
+  - {event: generated, meaning: receive payment created (invoice/address/BIP21 generated)}
+  - {event: detected, meaning: payment activity detected before the receive is fully completed}
+  - {event: refreshed, meaning: receive request refreshed (e.g. address rotation)}
+  - {event: expired, meaning: invoice/address expired before full payment}
+  - {event: succeeded, meaning: partial payment received (on-chain only; not BOLT11)}
+  - {event: completed, meaning: full requested amount received}
+  - {event: failed, meaning: receive flow failed (error generating, compliance issue, etc.)}
+- category: test
+  enum: TestEventTypes
+  events:
+  - {event: created, meaning: test webhook event used by the /test endpoint and internal tooling}

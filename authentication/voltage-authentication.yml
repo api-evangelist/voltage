@@ -1,0 +1,42 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.voltageapi.com/developer-guide
+docs: https://docs.voltageapi.com/security
+summary:
+  types: [apiKey]
+  api_key_in: [header]
+  oauth2_flows: []
+schemes:
+- name: PaymentsApiKey
+  type: apiKey
+  in: header
+  parameter: x-api-key
+  description: >-
+    Environment-scoped Payments API key. Generated from the team "API Keys" page in
+    the Voltage dashboard; each key is bound to one environment so staging and
+    production can be separated cleanly. Sent on every request as the x-api-key
+    header.
+  sources: [https://docs.voltageapi.com/developer-guide, https://docs.voltageapi.com/payments-access]
+- name: InfrastructureApiKey
+  type: apiKey
+  in: header
+  parameter: x-api-key
+  description: >-
+    Separate key for the Infrastructure API (node lifecycle/management). Created from
+    the Infrastructure dashboard by a team member with Write access. Does not bypass
+    node password or LND macaroon permissions.
+  sources: [https://docs.voltageapi.com/access-model]
+node_access:
+- name: LND Macaroons
+  type: macaroon
+  description: >-
+    LND-native credentials for direct node access (REST/gRPC/lncli), separate from
+    Voltage team permissions and API keys. Types include admin/super-admin,
+    read-only, invoice, and custom baked macaroons. Encrypted macaroon material is
+    decrypted with the node password; exported/decrypted macaroons must be treated
+    as secrets.
+  docs: https://docs.voltageapi.com/macaroons
+notes: >-
+  The Voltage Payments API is key-authenticated (x-api-key), not OAuth2/OIDC, so there
+  is no OAuth scope surface (scopes/ artifact intentionally omitted). Permission
+  layering is documented under the Access Model, Node Security, and Macaroons pages.

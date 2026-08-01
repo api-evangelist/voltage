@@ -1,0 +1,27 @@
+generated: '2026-07-21'
+method: searched
+source: live probes of /.well-known/ on Voltage hosts
+hosts:
+- host: https://voltage.cloud
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: voltage-security.txt
+  - path: /.well-known/openid-configuration
+    status: 404
+- host: https://voltageapi.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+notes: >-
+  The Payments API uses x-api-key (not OAuth/OIDC), so no OpenID/OAuth discovery
+  documents are published. Only a security.txt (RFC 9116) was found, on the
+  voltage.cloud marketing host.

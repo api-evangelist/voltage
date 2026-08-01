@@ -1,0 +1,76 @@
+generated: '2026-07-21'
+method: derived
+source: https://docs.voltageapi.com/voltage-payments-api
+description: >-
+  Entity-relationship model derived from the documented Voltage Payments REST
+  resource hierarchy and payload examples (no OpenAPI schema file was captured;
+  relationships inferred from URL nesting and documented fields).
+entities:
+- name: Organization
+  id_field: organization_id
+  description: Top-level account boundary; owns environments, wallets, and lines of credit.
+- name: Environment
+  id_field: environment_id
+  description: Staging vs production boundary within an organization; scopes API keys, payments, quotes, and webhooks.
+- name: Wallet
+  id_field: wallet_id
+  description: Holds funds and credit balances; BTC or USD denominated; belongs to one environment.
+- name: Payment
+  id_field: id
+  description: A send or receive payment (bolt11, on-chain, BIP21) with direction, currency, amount, status, and error.
+- name: Quote
+  id_field: quote_id
+  description: A locked BTC<->USD exchange rate required for USD wallet payments.
+- name: LineOfCredit
+  id_field: line_id
+  description: BTC- or USD-denominated credit line backing payments without pre-funding.
+- name: Webhook
+  id_field: id
+  description: Subscription delivering payment lifecycle events to a subscriber URL.
+- name: LedgerEntry
+  description: A transaction record in a wallet's ledger.
+relationships:
+- from: Environment
+  to: Organization
+  kind: belongs_to
+  via: organization_id
+- from: Wallet
+  to: Organization
+  kind: belongs_to
+  via: organization_id
+- from: Wallet
+  to: Environment
+  kind: belongs_to
+  via: environment_id
+- from: Payment
+  to: Environment
+  kind: belongs_to
+  via: environment_id
+- from: Payment
+  to: Wallet
+  kind: belongs_to
+  via: wallet_id
+- from: Quote
+  to: Environment
+  kind: belongs_to
+  via: environment_id
+- from: Webhook
+  to: Environment
+  kind: belongs_to
+  via: environment_id
+- from: LineOfCredit
+  to: Organization
+  kind: belongs_to
+  via: organization_id
+- from: LedgerEntry
+  to: Wallet
+  kind: belongs_to
+  via: wallet_id
+- from: Organization
+  to: Wallet
+  kind: has_many
+  via: organization_id
+- from: Wallet
+  to: LedgerEntry
+  kind: has_many
+  via: wallet_id

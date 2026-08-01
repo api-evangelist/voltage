@@ -1,0 +1,25 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.voltageapi.com
+versioning:
+  scheme: uri-path
+  current: v1
+  release_track: semver
+  current_release: v6.4.0
+  docs: https://docs.voltageapi.com/release-notes
+deprecation:
+  policy_url: null
+  sunset_header: false
+  notes: >-
+    No formal published deprecation/Sunset (RFC 8594) policy found. Backward
+    compatibility is handled additively: v6.3.0 preserved legacy offset pagination
+    and v1 cursor chains alongside new v2 cursors rather than removing them.
+sla:
+  url: null
+  uptime_target: null
+status_page: https://status.voltage.cloud
+migration_guides:
+- https://docs.voltageapi.com/migration-guide
+- https://docs.voltageapi.com/migrating-to-credit-backed-payments
+- https://docs.voltageapi.com/migrating-to-node-backed-payments
+deprecated_operations: []

@@ -1,0 +1,32 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.voltageapi.com/staging-environment
+name: Voltage Payments Staging (Mutinynet)
+description: >-
+  Safe sandbox for testing Lightning integrations without real funds, running on
+  Mutinynet, a global Bitcoin signet.
+base_url: https://voltageapi.com/v1
+environment_separation:
+  mechanism: environments
+  detail: >-
+    Test vs live is separated by Environment. Each wallet belongs to exactly one
+    Environment; teams create a dedicated testing/implementation Environment and a
+    separate production Environment. API keys are environment-scoped via x-api-key.
+  wallet_types: [development, mainnet]
+test_network: Mutinynet (Bitcoin signet)
+automatic_line_of_credit:
+  enabled: true
+  detail: >-
+    On Mutinynet an organization automatically receives a line of credit when it
+    creates its first environment wallet — no application, collateral, bank
+    verification, billing cycles, or payments.
+  default_credit_limit: 1 BTC
+  ui_wallet_default_limit: 0.05 BTC
+  api_wallet_limit: settable up to remaining allocation
+  automatic_expansion: >-
+    Creating a new wallet through the dashboard UI expands the line of credit by an
+    additional 1 BTC buffer.
+notes: >-
+  No published static test card/IBAN values (Lightning, not card rails). Testing uses
+  Mutinynet signet funds and the automatic staging line of credit. Development wallets
+  exercise the full API without real funds; switch to a Mainnet wallet for real funds.

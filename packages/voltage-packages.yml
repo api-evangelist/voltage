@@ -1,0 +1,35 @@
+generated: '2026-07-21'
+method: searched
+source: https://github.com/voltagecloud
+notes: >-
+  Voltage does not publish a dedicated Payments API client SDK; the Payments API is
+  consumed over plain HTTPS with an x-api-key header (see the developer guide and the
+  voltage-pay-wallet-demo reference app). The first-party packages below are node /
+  Lightning tooling published by the voltagecloud GitHub org.
+packages:
+- language: javascript
+  registry: npm
+  name: create-voltage-app
+  url: https://www.npmjs.com/package/create-voltage-app
+  install: npm create voltage-app
+  version: 1.1.12
+  official: true
+  kind: cli-scaffold
+  description: CLI to bootstrap a Lightning-powered app that connects to your Voltage node.
+- language: rust
+  registry: crates.io
+  name: tonic_lnd
+  url: https://crates.io/crates/tonic_lnd
+  install: cargo add tonic_lnd
+  version: 0.5.1
+  official: true
+  kind: node-client
+  description: Async Rust library implementing LND RPC via tonic and prost (direct Lightning node access).
+- language: python
+  registry: pypi
+  name: bolt11
+  url: https://pypi.org/project/bolt11/
+  install: pip install bolt11
+  official: true
+  kind: library
+  description: Lightning BOLT11 invoice implementation for Python (maintained under the voltagecloud org).

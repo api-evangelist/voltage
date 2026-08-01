@@ -1,0 +1,38 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.voltageapi.com/developer-guide
+format: custom
+envelope:
+  detail: >-
+    Payment resources carry a stable `error` field (null on success). The API returns
+    standard HTTP status codes; documented transient conditions use a stable error
+    code string (e.g. read_temporarily_unavailable).
+problems:
+- status: 202
+  code: accepted
+  title: Accepted
+  detail: >-
+    Payment creation succeeded and was accepted for asynchronous processing. Not an
+    error — the client must then fetch the payment to obtain the invoice and monitor
+    status.
+- status: 503
+  code: read_temporarily_unavailable
+  title: Read temporarily unavailable
+  detail: >-
+    Returned on transient payment read timeouts or recovery conflicts (documented in
+    v6.3.0). Safe to retry.
+  source: https://docs.voltageapi.com/release-notes
+payment_failure_reasons:
+  detail: >-
+    Payment/receive failures surface via the payment `error` field and webhook
+    events (send.failed / receive.failed) rather than a fixed decline-code table.
+  known_causes:
+  - exhausted routes
+  - insufficient funds
+  - compliance/risk rejection (OFAC / Amboss Reflex screening)
+  - invoice/address expired (receive)
+notes: >-
+  Voltage does not publish a fixed problem-type registry or RFC 9457 problem+json
+  catalog; the full OpenAPI at https://voltageapi.com/v1/docs is the authoritative
+  status/schema source. This catalog captures the documented statuses and the
+  error/failure model.

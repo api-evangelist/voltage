@@ -1,8 +1,27 @@
 aid: voltage
 name: Voltage
-description: 'Voltage is a company surfaced as a portfolio company of gv and added to the API Evangelist
-  network as a stub for enrichment. Sector: enterprise. This profile is a lead awaiting the enrichment
-  pipeline.'
+description: >-
+  Voltage is Bitcoin and Lightning Network money infrastructure that lets financial
+  platforms send and receive instant, permissionless payments at scale. Its Payments
+  API (voltageapi.com/v1) exposes wallets, payments, quotes, and lines of credit for
+  BTC and USD settlement, backed either by a Voltage-managed line of credit or your
+  own Lightning node. Voltage also runs managed Lightning node infrastructure (LND,
+  Core Lightning, BTCPay Server) with macaroon-based access, webhooks for real-time
+  payment events, a Mutinynet staging sandbox, and built-in OFAC/compliance risk
+  screening via Amboss Reflex. The platform is SOC 2 Type II and NMLS compliant.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://github.com/voltagecloud.png
 url: https://raw.githubusercontent.com/api-evangelist/voltage/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -12,16 +31,124 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 22
+  pass: local-v1
 tags:
 - Company
 - Enterprise
-apis: []
+- Bitcoin
+- Lightning Network
+- Payments
+- Cryptocurrency
+- Financial Services
+- Wallets
+- Infrastructure
+- Fintech
+- Node Hosting
+- Web3
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- name: Voltage Payments API
+  description: >-
+    REST API for sending and receiving Bitcoin/Lightning payments. Manage wallets,
+    create send/receive payments (BOLT11, on-chain, BIP21), lock BTC/USD exchange
+    rates with quotes, view lines of credit, and subscribe to webhooks for payment
+    lifecycle events. Authenticated with an environment-scoped x-api-key.
+  humanURL: https://docs.voltageapi.com
+  baseURL: https://voltageapi.com/v1
+  tags:
+  - Payments
+  - Bitcoin
+  - Lightning Network
+  - Wallets
+  properties:
+  - type: Documentation
+    url: https://docs.voltageapi.com
+  - type: APIReference
+    url: https://voltageapi.com/v1/docs
+  - type: GettingStarted
+    url: https://docs.voltageapi.com/developer-guide
 common:
+- type: VulnerabilityDisclosure
+  url: security/voltage-vulnerability-disclosure.yml
+- type: Security
+  url: security/voltage-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/voltage-domain-security.yml
 - type: Website
-  url: http://voltage.cloud
+  url: https://voltage.cloud
+- type: DeveloperPortal
+  url: https://docs.voltageapi.com
+- type: Documentation
+  url: https://docs.voltageapi.com
+- type: APIReference
+  url: https://voltageapi.com/v1/docs
+- type: GettingStarted
+  url: https://docs.voltageapi.com/developer-guide
+- type: Support
+  url: https://voltage.cloud/support
+- type: Blog
+  url: https://voltage.cloud/blog
+- type: Pricing
+  url: https://voltage.cloud/pricing
+- type: SignUp
+  url: https://app.voltage.cloud
+- type: TermsOfService
+  url: https://voltage.cloud/terms
+- type: PrivacyPolicy
+  url: https://voltage.cloud/privacy
+- type: GitHubOrganization
+  url: https://github.com/voltagecloud
+- type: StatusPage
+  url: https://status.voltage.cloud
+- type: ChangeLog
+  url: https://docs.voltageapi.com/release-notes
+- type: LLMsTxt
+  url: llms/voltage-llms.txt
+- type: Authentication
+  url: authentication/voltage-authentication.yml
+- type: Conventions
+  url: conventions/voltage-conventions.yml
+- type: Idempotency
+  url: conventions/voltage-conventions.yml
+- type: ChangeLog
+  name: Voltage Payments changelog (artifact)
+  url: changelog/voltage-changelog.yml
+- type: Lifecycle
+  url: lifecycle/voltage-lifecycle.yml
+- type: Sandbox
+  url: sandbox/voltage-sandbox.yml
+- type: AsyncAPI
+  url: asyncapi/voltage-payments-asyncapi.yml
+- type: Webhooks
+  url: asyncapi/voltage-payments-webhooks.yml
+- type: MCPServer
+  url: mcp/voltage-mcp.yml
+- type: ErrorCatalog
+  url: errors/voltage-problem-types.yml
+- type: Conformance
+  url: conformance/voltage-conformance.yml
+- type: Compliance
+  url: conformance/voltage-conformance.yml
+- type: DataModel
+  url: data-model/voltage-data-model.yml
+- type: CLI
+  url: cli/voltage-cli.yml
+- type: Packages
+  url: packages/voltage-packages.yml
+- type: SDKs
+  url: packages/voltage-packages.yml
+- type: WellKnown
+  url: well-known/voltage-well-known.yml
+- type: SecurityTxt
+  url: well-known/voltage-security.txt
+- type: AgentSkill
+  url: skills/_index.yml

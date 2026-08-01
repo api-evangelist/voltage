@@ -1,0 +1,26 @@
+generated: '2026-07-21'
+method: searched
+source: https://github.com/voltagecloud/create-voltage-app
+name: create-voltage-app
+description: >-
+  First-party command-line scaffolder that bootstraps a Lightning-powered application
+  wired to your Voltage node. Requires a Voltage account, team, and node set up at
+  app.voltage.cloud.
+install:
+- method: npm
+  command: npm create voltage-app
+- method: npx
+  command: npx create-voltage-app
+package: create-voltage-app
+registry: npm
+version: 1.1.12
+url: https://www.npmjs.com/package/create-voltage-app
+repo: https://github.com/voltagecloud/create-voltage-app
+surface:
+  detail: >-
+    Interactive project generator; prompts for Voltage node connection details and
+    emits a starter app skeleton. Not a full command tree over the Payments REST API.
+related_tools:
+- name: voltage-user-tools
+  repo: https://github.com/voltagecloud/voltage-user-tools
+  description: Open-source Python tools for Voltage customers.

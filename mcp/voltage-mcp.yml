@@ -1,0 +1,55 @@
+generated: '2026-07-21'
+method: derived
+status: candidate
+source: https://docs.voltageapi.com/voltage-payments-api
+description: >-
+  Candidate MCP tool surface derived from the documented Voltage Payments REST
+  operations. No official Voltage-hosted/remote MCP server was found as of this pass;
+  this is a suggested mapping (one tool per documented operation) for building one.
+server:
+  name: voltage
+  transport: http
+  url: null
+tools:
+- name: list_wallets
+  description: List all wallets in an organization.
+  source_operation: GET /organizations/{organization_id}/wallets
+- name: create_wallet
+  description: Create a new wallet in a development or production environment.
+  source_operation: POST /organizations/{organization_id}/wallets
+- name: get_wallet
+  description: Retrieve balance and status for a specific wallet.
+  source_operation: GET /organizations/{organization_id}/wallets/{wallet_id}
+- name: delete_wallet
+  description: Remove a wallet when no longer needed.
+  source_operation: DELETE /organizations/{organization_id}/wallets/{wallet_id}
+- name: get_wallet_ledger
+  description: Access the ledger of all transactions for a wallet.
+  source_operation: GET /organizations/{organization_id}/wallets/{wallet_id}/ledger
+- name: list_payments
+  description: View payment history with filtering options.
+  source_operation: GET /organizations/{organization_id}/environments/{environment_id}/payments
+- name: create_payment
+  description: Initiate a new send or receive payment (returns 202 Accepted).
+  source_operation: POST /organizations/{organization_id}/environments/{environment_id}/payments
+- name: get_payment
+  description: Retrieve information about a specific payment, including the invoice.
+  source_operation: GET /organizations/{organization_id}/environments/{environment_id}/payments/{payment_id}
+- name: get_payment_history
+  description: View the full lifecycle of a payment.
+  source_operation: GET /organizations/{organization_id}/environments/{environment_id}/payments/{payment_id}/history
+- name: create_quote
+  description: Lock in a BTC<->USD conversion rate for a USD wallet payment.
+  source_operation: POST /organizations/{organization_id}/environments/{environment_id}/quotes
+- name: get_quote
+  description: Retrieve information about a specific quote.
+  source_operation: GET /organizations/{organization_id}/environments/{environment_id}/quotes/{quote_id}
+- name: get_line_of_credit_summary
+  description: Get details about an available line of credit.
+  source_operation: GET /organizations/{organization_id}/lines_of_credit/{line_id}/summary
+- name: list_lines_of_credit
+  description: List all lines of credit across an organization.
+  source_operation: GET /organizations/{organization_id}/lines_of_credit/summaries
+- name: create_webhook
+  description: Register a webhook subscription for payment events.
+  source_operation: POST /organizations/{organization_id}/environments/{environment_id}/webhooks

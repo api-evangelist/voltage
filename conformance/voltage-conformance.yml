@@ -1,0 +1,39 @@
+generated: '2026-07-21'
+method: searched
+source:
+- https://voltage.cloud
+- https://docs.voltageapi.com/risk-management
+compliance_program:
+  published: true
+  certifications:
+  - SOC 2 Type II
+  regulatory:
+  - NMLS compliant (Voltage Credit lending product; NMLS ID 2676234, CA License #60DBO-206268)
+  screening:
+  - OFAC sanctions screening on destination pubkeys, route hints, and peer IP addresses (via Amboss Reflex)
+  page: https://voltage.cloud
+standards:
+- id: bolt11
+  conforms: true
+  evidence: Lightning BOLT11 invoices are a first-class payment_kind in the Payments API.
+- id: bip21
+  conforms: true
+  evidence: Payments return a bip21_uri and support BIP21 unified send/receive.
+- id: lightning-network
+  conforms: true
+  evidence: Core product is Lightning Network payments; node backends run LND / Core Lightning.
+- id: rfc9116-security-txt
+  conforms: true
+  evidence: https://voltage.cloud/.well-known/security.txt (Contact security@voltage.cloud)
+- id: soc2-type2
+  conforms: true
+  evidence: SOC 2 Type II stated on the Voltage homepage.
+- id: ofac-sanctions-screening
+  conforms: true
+  evidence: Amboss Reflex screens against the OFAC Sanctions List and ransomware address lists.
+- id: oauth2
+  conforms: false
+  evidence: API uses x-api-key authentication, not OAuth2.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: No application/problem+json error format documented.

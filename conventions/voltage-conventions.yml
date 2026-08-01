@@ -1,0 +1,63 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.voltageapi.com/developer-guide
+docs:
+- https://docs.voltageapi.com/voltage-payments-api
+- https://docs.voltageapi.com/webhooks
+authentication:
+  style: api-key-header
+  header: x-api-key
+  scope: per-environment
+  ref: authentication/voltage-authentication.yml
+base_url: https://voltageapi.com/v1
+resource_pathing:
+  style: nested
+  pattern: /organizations/{organization_id}/environments/{environment_id}/{resource}
+  notes: >-
+    Most operations are scoped by organization_id and environment_id; wallet and
+    line-of-credit endpoints are scoped by organization only.
+idempotency:
+  supported: true
+  mechanism: client-supplied-resource-id
+  detail: >-
+    Create operations accept a client-generated UUID in the request body `id` field
+    (e.g. POST payments and POST webhooks both take `id`). Re-sending a create with
+    the same `id` is safe, letting clients retry without creating duplicate payments
+    or webhooks. Payment creation returns 202 Accepted; the client then polls the
+    payment resource for the invoice and status.
+  fields: [id]
+async_lifecycle:
+  detail: >-
+    Payment creation is asynchronous: POST returns 202 Accepted, then the client
+    fetches the payment (and its /history sub-resource) to observe status
+    transitions. Receive statuses: generating, receiving, expired, failed, completed.
+    Real-time delivery is available via webhooks.
+pagination:
+  style: cursor
+  detail: >-
+    As of v6.3.0 payments use direction-aware v2 cursors, while preserving legacy
+    offset pagination and v1 cursor chains for backward compatibility.
+amounts:
+  detail: >-
+    Amounts are objects with `amount`, `currency` (btc|usd) and `unit` (e.g. msats for
+    BTC). USD wallet payments require a locked exchange-rate Quote; BTC wallets do not.
+units: [msats]
+request_tracing:
+  detail: Not explicitly documented as a request-id header in public docs.
+versioning:
+  scheme: uri-path
+  current: v1
+  release_track: semver (API build releases v6.x, e.g. v6.4.0)
+  ref: lifecycle/voltage-lifecycle.yml
+error_envelope:
+  detail: >-
+    Responses carry stable error fields; payment objects include an `error` field
+    (null on success). Documented transient error: 503 read_temporarily_unavailable.
+  ref: errors/voltage-problem-types.yml
+webhooks:
+  detail: >-
+    HTTP POST callbacks with a { type, detail: { event, data } } envelope; automatic
+    retries use a durable delay queue honoring scheduled backoff and Retry-After
+    (v6.4.0), and never send a new attempt after a delivery has succeeded or been
+    abandoned.
+  ref: asyncapi/voltage-payments-webhooks.yml

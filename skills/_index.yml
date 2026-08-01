@@ -1,0 +1,21 @@
+generated: '2026-07-21'
+method: generated
+source: https://docs.voltageapi.com
+api: Voltage Payments API
+skills:
+- file: voltage-receive-payment.md
+  name: Receive a Lightning payment with Voltage
+  operations:
+  - POST /payments
+  - GET /payments/{payment_id}
+  - GET /payments/{payment_id}/history
+- file: voltage-send-payment.md
+  name: Send a Lightning payment with Voltage
+  operations:
+  - POST /quotes
+  - POST /payments
+  - GET /payments/{payment_id}
+- file: voltage-manage-webhooks.md
+  name: Subscribe to Voltage payment webhooks
+  operations:
+  - POST /webhooks

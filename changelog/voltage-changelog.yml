@@ -1,0 +1,36 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.voltageapi.com/release-notes
+scheme: semver
+current_version: v6.4.0
+upstream: https://github.com/voltagecloud/backend/releases
+entries:
+- version: v6.4.0
+  date: '2026-07-20'
+  breaking: false
+  highlights:
+  - Automatic webhook retries now use a durable delay queue honoring scheduled backoff and Retry-After, and never re-attempt after a delivery has succeeded or been abandoned.
+  - Prepared on-chain payments reserve selected wallet inputs atomically so concurrent payments do not select the same outpoints, improving on-chain and BIP21 send reliability.
+  - Swap execution can route new swaps among configured nodes while pinning in-flight execution and reconciliation to the assigned node.
+  - Generated OpenAPI contract aligned more closely with verified runtime behavior across payments, quotes, wallets, webhooks, policies, assets, amounts, billing, and lines of credit.
+  - Payment docs now distinguish receive `receipts` from send `outflows`, including tagged swap outflows.
+  refs:
+  - https://github.com/voltagecloud/backend/releases/tag/v6.4.0
+- version: v6.3.0
+  date: '2026-07-13'
+  breaking: false
+  highlights:
+  - Send payment requests accept an optional `flow_preference` of `direct` or `swap` for node-backed wallets.
+  - Send responses and webhook payloads now include a `route` field (defaults to `direct`).
+  - Payment cursor pagination now uses direction-aware v2 cursors while preserving legacy offset pagination and v1 cursor chains; transient reads return 503 read_temporarily_unavailable.
+  - Payment execution persists prepared execution artifacts so newly prepared payments can safely resume after interruptions without double-executing.
+  - Lightning-to-on-chain swap funding and claim fee handling made more resilient to fragmented UTXOs.
+  refs:
+  - https://github.com/voltagecloud/backend/releases/tag/v6.3.0
+- version: v6.2.7
+  date: '2026-06-23'
+  breaking: false
+  highlights:
+  - Maintenance release (see upstream GitHub release for details).
+  refs:
+  - https://github.com/voltagecloud/backend/releases/tag/v6.2.7

@@ -1,0 +1,4 @@
+Contact: mailto:security@voltage.cloud
+Preferred-Languages: en
+Canonical: https://voltage.cloud/.well-known/security.txt
+Expires: 2027-06-16T23:59:59Z

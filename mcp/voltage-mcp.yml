@@ -2,10 +2,9 @@ generated: '2026-07-21'
 method: derived
 status: candidate
 source: https://docs.voltageapi.com/voltage-payments-api
-description: >-
-  Candidate MCP tool surface derived from the documented Voltage Payments REST
-  operations. No official Voltage-hosted/remote MCP server was found as of this pass;
-  this is a suggested mapping (one tool per documented operation) for building one.
+description: Candidate MCP tool surface derived from the documented Voltage Payments REST operations.
+  No official Voltage-hosted/remote MCP server was found as of this pass; this is a suggested mapping
+  (one tool per documented operation) for building one.
 server:
   name: voltage
   transport: http
@@ -53,3 +52,9 @@ tools:
 - name: create_webhook
   description: Register a webhook subscription for payment events.
   source_operation: POST /organizations/{organization_id}/environments/{environment_id}/webhooks
+deployment:
+  mode: none
+  verified: derived
+  tools: 14
+  checked: '2026-08-12'
+  source: catalog MCP census

@@ -9,6 +9,17 @@ description: >-
   Core Lightning, BTCPay Server) with macaroon-based access, webhooks for real-time
   payment events, a Mutinynet staging sandbox, and built-in OFAC/compliance risk
   screening via Amboss Reflex. The platform is SOC 2 Type II and NMLS compliant.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
